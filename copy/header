@@ -18,13 +18,13 @@
 #include "../shell.h"
 
 //// lexer
-typedef struct  lexer_t
+typedef struct  t_lexer
 {
     char    c;
     unsigned int i;
     char    *src;
     t_shell *mini;
-} lexer_t;
+} t_lexer;
 
 
 // token
@@ -49,21 +49,21 @@ typedef struct token_struct
     } type;
 
     char *val;
-} token_t;
+} t_token;
 
 
 char	*get_next_line(int fd);
 void    ft_mini(t_shell *mini, char *src);
-lexer_t *init_lexer(char *src,t_shell *mini);
-void    lexer_advance(lexer_t *lexer);
-void    lixer_skip_whitespace(lexer_t *lexer);
-token_t *lexer_get_next_token(lexer_t *lexer, token_t *token);
-token_t *lexer_collect_string(lexer_t *lexer, token_t *token);
-token_t *lexer_collect_arg(lexer_t *lexer, token_t *token);
-char	*check_var(lexer_t *lexer);
-char    *lexer_get_current_char_as_string(lexer_t *lexer);
-token_t *lexer_advance_with_token(lexer_t *lexer, token_t *token);
-token_t *init_token(int t_type, char *val, token_t *token);
+t_lexer *init_lexer(char *src,t_shell *mini);
+void    lexer_advance(t_lexer *lexer);
+void    lixer_skip_whitespace(t_lexer *lexer);
+t_token *lexer_get_next_token(t_lexer *lexer, t_token *token);
+t_token *lexer_collect_string(t_lexer *lexer, t_token *token);
+t_token *lexer_collect_arg(t_lexer *lexer, t_token *token);
+char	*check_var(t_lexer *lexer);
+char    *lexer_get_current_char_as_string(t_lexer *lexer);
+t_token *lexer_advance_with_token(t_lexer *lexer, t_token *token);
+t_token *init_token(int t_type, char *val, t_token *token);
 
 
 //// parser
@@ -75,6 +75,6 @@ char    *ft_getenv(t_shell *mini, char *str);
 
 /// error 
 
-int		ft_error(lexer_t *lexer);
+int		ft_error(t_lexer *lexer);
 #endif
 

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #ifndef UTILES_FUNCTIONS_H
-#define UTILES_FUNCTIONS_H
+# define UTILES_FUNCTIONS_H
 
 # include <stdlib.h>
 # include <stdio.h>
@@ -23,8 +23,8 @@
 //unsigned int  ft_strlen(char *src);
 char	*ft_h_strjoin(char *s1, char *s2);
 char	*ft_strdup( char *s1);
-char    **ft_realloc_char(char **str);
-int     *ft_realloc_int(int *tab, char **str);
+char	**ft_realloc_char(char **str);
+int		*ft_realloc_int(int *tab, char **str);
 void	ft_free_list(t_list *lst);
 
 #endif

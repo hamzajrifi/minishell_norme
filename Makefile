@@ -20,7 +20,8 @@ C_FILES =	main.c\
 			built_func/pwd.c\
 			built_func/unset.c\
 			built_func/utils_exp.c\
-			parser.c\
+			parsing/parser.c\
+			parsing/parser_second.c\
 			utils/ft_split.c\
 			utils/ft_strjoin.c\
 			utils/ft_substr.c\
@@ -30,11 +31,14 @@ C_FILES =	main.c\
 			utils/ft_calloc.c\
 			exec/ft_getenv.c\
 			exec/sec_heredoc.c\
-			mini.c\
+			lexer/mini.c\
 			functions/ft_error.c\
 			get/get_next_line.c\
 			exec/exit_status.c\
-			ft_free/ft_free_list.c
+			ft_free/ft_free_list.c\
+			lexer/lexer_action.c\
+			lexer/lexer.c\
+			lexer/token.c
 
 OBJ = $(C_FILES:.c=.o)
 # main.o\
@@ -55,6 +59,8 @@ clean :
 		rm -f *.o built_func/*.o
 		rm -f *.o exec/*.o
 		rm -f *.o utils/*.o
+		rm -f *.o parsing/*.o
+		rm -f *.o lexer/*.o
 		rm -f $(NAME)
 fclean : clean
 		rm -f minishell

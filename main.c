@@ -3,9 +3,9 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otmallah <otmallah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 11:57:56 by otmallah          #+#    #+#             */
+/*   Created: 2022/06/10 11:57:56 by hjrifi            #+#    #+#             */
 /*   Updated: 2022/06/16 14:49:09 by otmallah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -44,22 +44,6 @@ int     finder_red(t_list *list)
     return 0;
 }
 
-// void	handler(int sig)
-// {
-// 	if (sig == SIGINT)
-// 	{
-// 		printf("\n");
-// 		rl_on_new_line();
-// 		rl_replace_line("", 0);
-// 		rl_redisplay();
-// 		status_exec_g = 130;
-// 	}
-// 	if (sig == SIGQUIT)
-// 	{
-// 		rl_redisplay();
-// 	}
-// }
-
 void    ft_mini(t_shell *mini, char *src)
 {
     t_list *lst;
@@ -83,7 +67,6 @@ void    ft_mini(t_shell *mini, char *src)
         ft_check_built(mini, lst, 1);
     }
     ft_free_list(head);
-
     // system("leaks minishell");
 }
 

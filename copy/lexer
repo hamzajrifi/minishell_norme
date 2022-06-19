@@ -12,11 +12,11 @@
 
 #include "header/minishell.h"
 
-lexer_t *init_lexer(char *src, t_shell *mini)
+t_lexer *init_lexer(char *src, t_shell *mini)
 {
-    lexer_t *lexer ;
+    t_lexer *lexer ;
 
-    lexer = malloc(sizeof(lexer_t));
+    lexer = malloc(sizeof(t_lexer));
     lexer->src = src;
     lexer->i = 0;
     lexer->c = src[lexer->i];
@@ -24,7 +24,7 @@ lexer_t *init_lexer(char *src, t_shell *mini)
     return (lexer);
 }
 
-void    lexer_advance(lexer_t *lexer)
+void    lexer_advance(t_lexer *lexer)
 {
     if (lexer->c && lexer->i < ft_strlen(lexer->src))
     {
@@ -33,14 +33,14 @@ void    lexer_advance(lexer_t *lexer)
     }
 }
 
-void    lexer_skip_whitespace(lexer_t *lexer)
+void    lexer_skip_whitespace(t_lexer *lexer)
 {
     while(lexer->c == ' ')
         lexer_advance(lexer);
 }
 
 
-token_t *lexer_get_next_token(lexer_t *lexer, token_t *token)
+t_token *lexer_get_next_token(t_lexer *lexer, t_token *token)
 {   
     while (lexer->c && lexer->i < ft_strlen(lexer->src))
     {
@@ -72,9 +72,9 @@ token_t *lexer_get_next_token(lexer_t *lexer, token_t *token)
     return (NULL);
 }
 
-token_t *init_token(int t_type, char *value, token_t *token)
+t_token *init_token(int t_type, char *value, t_token *token)
 {
-    token->type = t_type;
+    token->e_type = t_type;
     if (value)
     {
         token->val = ft_strdup(value);
@@ -83,13 +83,13 @@ token_t *init_token(int t_type, char *value, token_t *token)
     return (token);
 }
 
-token_t *lexer_advance_with_token(lexer_t *lexer, token_t *token)
+t_token *lexer_advance_with_token(t_lexer *lexer, t_token *token)
 {
     lexer_advance(lexer);
     return (token);
 }
 
-char	*check_var(lexer_t *lexer)
+char	*check_var(t_lexer *lexer)
 {
 	char	*tmp;
     char	*str;
@@ -140,7 +140,7 @@ int    check_lexer_c(char c)
     return (0);
 }
 
-void    check_backslash(lexer_t **lexer)
+void    check_backslash(t_lexer **lexer)
 {
     char    c;
     char    k;
@@ -151,7 +151,7 @@ void    check_backslash(lexer_t **lexer)
         lexer_advance(*lexer);
 }
 
-char	*check_arg_dollar(lexer_t *lexer, char *str, char c, token_t *token)
+char	*check_arg_dollar(t_lexer *lexer, char *str, char c, t_token *token)
 {
 	str = ft_h_strjoin(str, check_var(lexer));
 
@@ -170,7 +170,7 @@ char	*check_arg_dollar(lexer_t *lexer, char *str, char c, token_t *token)
 	return (str);
 }
 
-token_t *lexer_collect_string(lexer_t *lexer, token_t *token)
+t_token *lexer_collect_string(t_lexer *lexer, t_token *token)
 {
     char    *tmp;
     char    *str;
@@ -215,7 +215,7 @@ token_t *lexer_collect_string(lexer_t *lexer, token_t *token)
     return (init_token(t_args, str, token));
 }
 
-token_t *lexer_collect_arg(lexer_t *lexer, token_t *token)
+t_token *lexer_collect_arg(t_lexer *lexer, t_token *token)
 {
     char    *tmp;
     char    *str;
@@ -249,7 +249,7 @@ token_t *lexer_collect_arg(lexer_t *lexer, token_t *token)
     return (init_token(t_args, str, token));
 }
 
-char *lexer_get_current_char_as_string(lexer_t *lexer)
+char *lexer_get_current_char_as_string(t_lexer *lexer)
 {
     char    *str;
     
